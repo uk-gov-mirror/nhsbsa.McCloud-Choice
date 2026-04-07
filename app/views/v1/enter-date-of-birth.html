@@ -15,37 +15,47 @@
 
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-      <form action="/v1/result" method="post">
+      <form action="enter-date-of-birth" method="post">
         
         <span class="nhsuk-caption-l nhsuk-caption--bottom">Your details</span>
-        {{ dateInput({
-          "id": "date-of-birth",
-          "namePrefix": "date-of-birth",
-          "fieldset": {
-            "legend": {
-              "text": pageTitle,
-              "classes": "nhsuk-fieldset__legend--l",
-              "isPageHeading": true
-            }
-          },
-          "hint": {
-            "text": "For example, 15 3 1984"
-          },
-          "items": [
-            {
-              "name": "day",
-              "classes": "nhsuk-input--width-2"
-            },
-            {
-              "name": "month",
-              "classes": "nhsuk-input--width-2"
-            },
-            {
-              "name": "year",
-              "classes": "nhsuk-input--width-4"
-            }
-          ]
-        }) }}
+        <div class="nhsuk-form-group">
+          <fieldset class="nhsuk-fieldset" role="group" aria-describedby="birth-date-hint">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+              <h1 class="nhsuk-fieldset__heading">
+                What is the member's date of birth?
+              </h1>
+            </legend>
+            <div class="nhsuk-hint" id="birth-date-hint">
+              For example, 18 3 1984
+            </div>
+            <div class="nhsuk-date-input" id="birth-date">
+              <div class="nhsuk-date-input__item">
+                <div class="nhsuk-form-group">
+                  <label class="nhsuk-label nhsuk-date-input__label" for="birth-date-day">
+                    Day
+                  </label>
+                  <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="birth-date-day" name="birthDay" type="text" inputmode="numeric">
+                </div>
+              </div>
+              <div class="nhsuk-date-input__item">
+                <div class="nhsuk-form-group">
+                  <label class="nhsuk-label nhsuk-date-input__label" for="birth-date-month">
+                    Month
+                  </label>
+                  <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="birth-date-month" name="birthMonth" type="text" inputmode="numeric">
+                </div>
+              </div>
+              <div class="nhsuk-date-input__item">
+                <div class="nhsuk-form-group">
+                  <label class="nhsuk-label nhsuk-date-input__label" for="birth-date-year">
+                    Year
+                  </label>
+                  <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="birth-date-year" name="birthYear" type="text" inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
         {{ button({
           text: "Continue"

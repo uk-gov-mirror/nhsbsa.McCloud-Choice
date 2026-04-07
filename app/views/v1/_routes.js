@@ -43,7 +43,7 @@ router.post('/enter-your-national-insurance-number', function (req, res) {
     const regex = new RegExp('^(?!BG|GB|KN|NK|NT|TN|ZZ)[A-CEGHJ-PR-TW-Z]{2}\\d{6}[A-D]$');
 
     if (nino) {
-        if (regex.test(nino)|| nino === 'QQ123456C') { 
+        if (regex.test(nino)|| nino === 'QQ123456C'& 'AB123456D'& 'AC234578B'& 'AZ124578A') { 
             res.redirect('enter-date-of-birth');  // Valid National Insurance Number
         } else {
             res.redirect('enter-your-national-insurance-number');  // Invalid format
@@ -58,5 +58,22 @@ router.post('/enter-your-national-insurance-number', function (req, res) {
 router.post('/member-not-found', (req, res) => {
     res.redirect('start')
 });
+
+//Date of birth page
+router.post('/enter-date-of-birth', (req, res) => {
+    const day = Number(req.session.data['birthDay']);
+    const month = Number(req.session.data['birthMonth']);
+    const year = Number(req.session.data['birthYear']);
+  
+    if (day === 10 && month === 10 && year === 1980) {
+      res.redirect('/v1/not-due-rss-yet');
+    } else if (day === 20 && month === 12 && year === 1970) {
+        res.redirect('/v1/rss-already-sent');
+    } else if (day === 10 && month === 11 && year === 1975) {
+        res.redirect('/v1/member-not-found');  
+    } else {
+      res.redirect('/v1/result');
+    }
+  });
 
 module.exports = router;
