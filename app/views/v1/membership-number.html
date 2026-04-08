@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% set pageTitle = "Do you know your membership number?"%}
+{% set pageTitle = "Do you know the member's membership number?"%}
 
 {% block pageTitle %}
 {{pageTitle}} - {{serviceName}}
@@ -30,7 +30,7 @@
             }) }}
           {% endset -%} 
 
-          <span class="nhsuk-caption-l nhsuk-caption--bottom">Your details</span>
+          <span class="nhsuk-caption-l nhsuk-caption--bottom">Details</span>
           {{ radios({
             idPrefix: "membership-number",
             name: "membership-number",
@@ -48,7 +48,7 @@
             items: [ 
               {
                 value: "Yes, I know my membership number",
-                text: "Yes, I know my membership number",
+                text: "Yes, I know the membership number",
                 conditional: {
                   html: sdNumberHtml
                 }
@@ -56,7 +56,7 @@
               },
               {
                 value: "No, I do not know my membership number",
-                text: "No, I do not know my membership number"
+                text: "No, I do not know the membership number"
               },
               {
                 value: "I'm not sure",

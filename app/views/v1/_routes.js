@@ -46,7 +46,7 @@ router.post('/enter-your-national-insurance-number', function (req, res) {
         if (regex.test(nino)|| nino === 'QQ123456C'& 'AB123456D'& 'AC234578B'& 'AZ124578A') { 
             res.redirect('enter-date-of-birth');  // Valid National Insurance Number
         } else {
-            res.redirect('enter-your-national-insurance-number');  // Invalid format
+            res.redirect('enter-date-of-birth');  
         }
     } else {
         res.redirect('enter-your-national-insurance-number');  // Field is empty
@@ -71,6 +71,14 @@ router.post('/enter-date-of-birth', (req, res) => {
         res.redirect('/v1/rss-already-sent');
     } else if (day === 10 && month === 11 && year === 1975) {
         res.redirect('/v1/member-not-found');  
+    } else if (day === 12 && month === 11 && year === 1965) {
+        res.redirect('/v1/result-later-date'); 
+    } else if (day === 22 && month === 10 && year === 1965) {
+        res.redirect('/v1/not-affected-by-mccloud'); 
+    } else if (day === 25 && month === 12 && year === 1960) {
+        res.redirect('/v1/will-not-send-rss'); 
+    } else if (day === 15 && month === 10 && year === 1960) {
+        res.redirect('/v1/not-send-rss-yet'); 
     } else {
       res.redirect('/v1/result');
     }
