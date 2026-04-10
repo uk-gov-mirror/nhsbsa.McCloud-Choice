@@ -59,6 +59,11 @@ router.post('/member-not-found', (req, res) => {
     res.redirect('start')
 });
 
+// Member not due an RSS yet page
+router.post('/not-due-rss-yet', (req, res) => {
+    res.redirect('start')
+});
+
 //Date of birth page
 router.post('/enter-date-of-birth', (req, res) => {
     const day = Number(req.session.data['birthDay']);
