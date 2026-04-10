@@ -80,7 +80,7 @@ router.post('/enter-date-of-birth', (req, res) => {
     } else if (day === 15 && month === 10 && year === 1960) {
         res.redirect('/v1/not-send-rss-yet'); 
     } else {
-      res.redirect('/v1/result');
+      res.redirect('/v1/result-earlier-date');
     }
   });
 
