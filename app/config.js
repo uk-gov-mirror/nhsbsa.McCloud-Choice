@@ -2,7 +2,7 @@
 
 module.exports = {
   // Service name
-  serviceName: 'Check a remediable service statement delivery date',
+  serviceName: 'Check a Remediable Service Statement delivery date',
 
   // Port to run the prototype on locally
   port: 3000
