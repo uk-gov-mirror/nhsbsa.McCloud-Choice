@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% set pageTitle = "Do you know the member's NHS Pensions membership number?"%}
+
+{% block pageTitle %}
+{{pageTitle}} - {{serviceName}}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block outerContent %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <div class="nhsuk-form-group">
+        <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+          <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="nhsuk-error-summary__body">
+            <ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+              <li><a href="#membership-number">Enter a valid NHS Pensions membership number</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <form action="/v1/membership-number" method="post">
+
+          {% set sdNumberHtml %}
+            {{ input({
+              id: "sdNumber",
+              name: "sdNumber",
+              classes: "nhsuk-u-width-two-thirds",
+              label: {
+                text: "Membership number"
+              }
+            }) }}
+          {% endset -%} 
+
+          <span class="nhsuk-caption-l nhsuk-caption--bottom">Details</span>
+          {{ radios({
+            idPrefix: "membership-number",
+            name: "membership-number",
+            errorMessage: {
+              text: "Enter a valid NHS Pensions membership number"
+            },
+            classes: "nhsuk-radios--inline",
+            fieldset: {
+              legend: {
+                text: pageTitle,
+                classes: "nhsuk-fieldset__legend--l",
+                isPageHeading: true
+              }
+            },
+            hint: {
+              text: "This starts with 'SD' (like SD12345678).  You can find it on payslips, Annual Benefit Statements, Total Reward Statements, or any letters from us"
+            },
+            items: [ 
+              {
+                
+                value: "Yes, I know my membership number",
+                text: "Yes, I know the membership number",
+                checked: true,
+                conditional: {
+                  html: sdNumberHtml
+                }
+              
+              },
+              {
+                value: "No, I do not know my membership number",
+                text: "No, I do not know the membership number"
+              },
+              {
+                value: "I'm not sure",
+                text: "I'm not sure"
+              }
+            ]
+          }) }}
+          <div>
+            
+          </div>
+          
+          
+  
+          {{ button({
+          "text": "Continue"
+          }) }}
+        </form>
+
+      </div>
+    </div>  
+  </div>
+{% endblock %}

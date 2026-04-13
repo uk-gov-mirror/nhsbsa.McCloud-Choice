@@ -18,16 +18,27 @@ router.post('/start', (req, res) => {
 // Do you know your membership number?
 router.post('/membership-number', (req, res) => {
 
-    var memberNumber = req.session.data['membership-number']
+    const memberChoice = req.session.data['membership-number']
+    const sdNumber = req.session.data['sdNumber']
 
-    if (memberNumber == 'Yes, I know my membership number') {
-        res.redirect('enter-date-of-birth')
-    } else if (memberNumber == "No, I do not know my membership number") {
-        res.redirect('enter-your-national-insurance-number');
-    } else if (memberNumber == "I'm not sure") {
-        res.redirect('enter-your-national-insurance-number');
-    }else {
-        res.redirect('membership-number')
+    if (memberChoice === 'Yes, I know my membership number') {
+
+        // If empty or just spaces
+        if (!sdNumber || sdNumber.trim() === '') {
+            return res.redirect('/v1/membership-number-error')
+        }
+
+        // If a value entered
+        return res.redirect('/v1/enter-date-of-birth')
+
+    } else if (memberChoice === "No, I do not know my membership number") {
+        return res.redirect('/v1/enter-your-national-insurance-number')
+
+    } else if (memberChoice === "I'm not sure") {
+        return res.redirect('/v1/enter-your-national-insurance-number')
+
+    } else {
+        return res.redirect('/v1/membership-number')
     }
 });
 
