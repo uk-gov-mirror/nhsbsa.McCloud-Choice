@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+{% set pageTitle = "What is the member's National Insurance number?"%}
+
+{% block pageTitle %}
+{{pageTitle}} - {{serviceName}}
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block outerContent %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="nhsuk-error-summary__body">
+          <ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+            <li><a href="#nationalInsuranceNumber">Enter a valid National Insurance Number</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <form action="enter-your-national-insurance-number" method="post">
+        <span class="nhsuk-caption-l nhsuk-caption--bottom">Details</span>
+        {% call fieldset({
+          legend: {
+            "text": pageTitle,
+            "classes": "nhsuk-fieldset__legend--l",
+            "isPageHeading": true
+          }
+        }
+      ) %}
+        
+        {% from 'input/macro.njk' import input %}
+          {{ input({
+            
+           
+            label: {
+              "html": 'National Insurance number'
+            },
+            hint: {
+              text: "It’s on a National Insurance card, benefit letter, payslip or P60 – for example, ‘QQ 12 34 56 C’\."
+            },
+            "id": "nationalInsuranceNumber",
+            "name": "nationalInsuranceNumber",
+            errorMessage: {
+              text: "Enter a valid National Insurance number"
+            },
+            spellcheck: false,
+            "classes": "nhsuk-input--width-10"
+            
+          }) }}
+        
+        {% endcall %}
+
+      
+
+        {{ button({
+          "text": "Continue"
+        }) }}
+
+      </form>
+    </div>  
+  </div>
+
+  <script>
+    function setLocation(element) {
+      document.forms[0].action = element.value
+    }
+  </script>
+{% endblock %}
