@@ -59,7 +59,7 @@ router.post('/enter-your-national-insurance-number', function (req, res) {
 
     if (
         regex.test(nino) ||
-        nino === 'QQ123456C' ||
+        nino === 'QQ252366C' ||
         nino === 'AB123456D' ||
         nino === 'AC234578B' ||
         nino === 'AZ124578A'
@@ -96,7 +96,7 @@ router.post('/enter-date-of-birth', (req, res) => {
         res.redirect('/v1/rss-already-sent');
     } else if (day === 10 && month === 11 && year === 1975 && sdNumber === '11255371') {
         res.redirect('/v1/member-not-found'); 
-    } else if (day === 10 && month === 11 && year === 1975 && nino === 'QQ123456C') {
+    } else if (day === 10 && month === 11 && year === 1975 && nino === 'QQ252366C') {
         res.redirect('/v1/member-not-found-NI');  
     } else if (day === 12 && month === 11 && year === 1965 && sdNumber ==='67092299') {
         res.redirect('/v1/result-later-date'); 
